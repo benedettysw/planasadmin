@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/login.css') }}">
+    <link rel="Shortcut Icon" href="{{url_for('static', filename='assets/img/tarea.png')}}">
+    <title>Login</title>
+</head>
+
+<body style="background-color: black;">
+    <section>
+        <a href="/fronted/login" id="Exit">Salir</a>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Crea una cuenta
+                        </h2>
+                        <div class="inputbox">
+                            <input style="font-size: 90%;" type="text" id="nombre" required>
+                        <label for="">Nombre</label>
+                        </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input style="font-size: 85%;" type="email" id="correo" required>
+                        <label>Correo Electronico</label>
+                    </div>
+                    <div class="inputbox">
+                        <input style="font-size: 90%;" type="password" id="clave" required>
+                        <label for="">Clave</label>
+                        
+                        <img src="{{url_for('static', filename='assets/img/ojos.png')}}" id="Clave" class="img">
+                    </div>
+                    <div class="forget">
+
+                   
+                    </div>
+                    <button id="btnlogin" onclick="cuenta()"  type="button">Registrarse</button>
+                    <br>
+                    <br>
+                    
+                    
+                    <div class="register">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{url_for('static', filename='JS/cuenta.js')}}"></script>
+
+<style>
+  .sin-linea {
+    text-decoration: none;
+  }
+</style>
+</body>
+
+</html>

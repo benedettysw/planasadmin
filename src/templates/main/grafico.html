@@ -1,0 +1,27 @@
+{% extends '/main/layout.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gráfico con Chart.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static' , filename='css/grafico.css') }}">
+
+  
+
+</head>
+
+<body>
+  <div class="siuuu">
+    <canvas class="grafico" id="grafico"></canvas>
+  </div>
+
+
+  <script src="{{url_for('static', filename='JS/grafico.js')}}"></script>
+
+</body>
+</html>
+{% endblock %}

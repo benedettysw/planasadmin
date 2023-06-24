@@ -1,0 +1,157 @@
+{% extends "/main/layout.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabla Castigo</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/update.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/Modal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/MODAL2.css') }}">
+</head>
+
+<body>
+    <main class="table">
+        <section class="table__header">
+            <h1>Aprendizes Registrados </h1>
+            <div class="input-group">
+                <input  onclick="searchTable()" onkeyup="searchTable()" id="buscar" type="search" placeholder="Buscar Datos">
+                <img src="https://cdn.icon-icons.com/icons2/1182/PNG/512/1490129321-rounded10_82180.png" >            
+            </div>
+            <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+                <!-- <div class="export__file-options">
+                    <label>Export As &nbsp; &#10140;</label>
+                    <label for="export-file" id="toPDF">PDF <img src="images/pdf.png" alt=""></label>
+                    <label for="export-file" id="toJSON">JSON <img src="images/json.png" alt=""></label>q
+                    <label for="export-file" id="toCSV">CSV <img src="images/csv.png" alt=""></label>
+                    <label for="export-file" id="toEXCEL">EXCEL <img src="images/excel.png" alt=""></label>
+                </div> -->
+            </div>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Nombre<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Apellido<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Curso<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Nficha<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Ndocumento<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Opciones<span class="icon-arrow">&UpArrow;</span></th>
+                    </tr>
+                </thead>
+                <tbody id="tabla">
+
+                </tbody>
+            </table>
+        </section>
+ <!-- El 1 modal de actualizar -->
+        <div class="modal1" id="modal1">
+            <div class="modal-content1">
+                <span class="close1"></span>
+                <div class="mensaje1">
+                    <h1>Imponer castigo</h1>
+                </div>
+                <br>
+                <div class="text">
+                    <form class="form-control">
+                        <form>
+                            <label>Id del aprendiz:</label>
+                            <input type="text" disabled  id="id-e">
+                            <br>
+                            <label>Cantida De Planas:</label>
+                            <input type="text" id="plana" oninput="filtrarNumeros(event)">
+                            <br>
+                            <label>Estado:</label>
+                            <select id="selector">
+                                <option value="" id="estados" disabled selected hidden>Seleccionar</option>
+                                <option value="Pendiente" id="estado">Pendiente</option>
+                              </select>                              
+                            <br>
+                            <label>Fecha Inicio:</label>
+                            <input type="datetime-local" id="finicio">
+                            <br>
+                            <label>Motivo:</label>
+                            <textarea class="text-area" id="motivo" cols="54" rows="5"></textarea>
+                            
+                            <br>
+                            <form onsubmit="return validarmodal()">
+                                <!-- contenido del formulario -->
+                            <input type="button" type="submit" class="btn-castigo" onclick="castigo(),validarmodal()" value="Imponer Castigo">
+                              </form>
+                        </form>
+                    </form>
+                </div>
+            </div>  
+        </div>
+
+        <!-- El segundo modal de actualizar -->
+
+        <div class="modal" id="modalactu2">
+            <div class="modal-content1">
+                <span class="close1"></span>
+                <div class="mensaje1">
+                    <h1>Actualización De Datos</h1>
+                </div>
+                <br>
+                <div class="text">
+                    <form class="form-control">
+                        <form>
+                            <label>Id del aprendiz:</label>
+                            <input class="actu" type="text" disabled id="id-e1">
+                            <br>
+                            <label>Nombres:</label>
+                            <input class="actu" type="text" id="nombre">
+                            <br>
+                            <label>Apellidos:</label>
+                            <input class="actu" type="text" id="Apellido">
+                            <br>                         
+                            <label>Curso:</label>
+                            <input class="actu" type="text" id="curso">
+                            <br>
+                            <label>N.Ficha:</label>
+                            <input class="actu" type="text" id="Nficha">
+                            <label>N.Documento:</label>
+                            <input class="actu" type="text" id="documento">                         
+                            <br>
+                            <form onsubmit="return validarmodal1()">
+                                <!-- contenido del formulario -->
+                            <input class="btn-actualizar" type="button" id="actualizar" onclick="update(),validarmodal1()" type="submit" value="Actualizar Datos">
+                              </form>
+                        </form>
+                    </form>
+                </div>
+            </div>  
+        </div>
+
+
+
+        <script src="{{url_for('static', filename='JS/update.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+
+            function filtrarNumeros(event) {
+              // Obtener el valor actual del campo de entrada
+              let input = event.target;
+              let valor = input.value;
+            
+              // Filtrar caracteres no numéricos utilizando una expresión regular
+              let numeros = valor.replace(/\D/g, '');
+            
+              // Actualizar el valor del campo de entrada con solo los números
+              input.value = numeros;
+            }
+            </script>
+</body>
+
+
+
+</html>
+{% endblock %}

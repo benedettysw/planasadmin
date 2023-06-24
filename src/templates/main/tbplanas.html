@@ -1,0 +1,70 @@
+{% extends "/main/layout.html" %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabla Castigo</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/update.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/perfiles.css') }}">
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   
+
+</head>
+
+<body>
+    <main class="table">
+        <section class="table__header">
+            <h1>Aprendizes Con Planas </h1>
+            <div class="input-group">
+                <input  onclick="searchTable()" onkeyup="searchTable()" id="buscar" type="search" placeholder="Buscar Datos">
+                <img src="https://cdn.icon-icons.com/icons2/1182/PNG/512/1490129321-rounded10_82180.png">            
+            </div>
+            
+            <div class="export__file">
+                <label for="export-file" class="export__file-btn" title="Export File"></label>
+                <input type="checkbox" id="export-file">
+
+            </div>
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Id <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Nombre<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Apellido<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Planas<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Motivo<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Estado<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> FechaInicio<span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Opciones<span class="icon-arrow">&UpArrow;</span></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tabla">
+
+                </tbody>
+            </table>
+
+        </section>
+
+        
+
+    
+    </main>
+    <script src="{{url_for('static', filename='JS/castigo.js')}}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+
+
+</body>
+</html>
+{% endblock %}

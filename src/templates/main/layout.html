@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Menú Desplegable</title>
+    <link rel="Shortcut Icon" href="{{url_for('static', filename='assets/img/tarea.png')}}">
+	<link rel="stylesheet" href="{{ url_for('static' , filename='css/estilo.css') }}">
+</head>
+<body>
+	<nav>
+		<ul class="menu-horizontal">
+			<li> <a href="/logout">Cerrar Sesion </a>
+			</li>
+			<li>
+				<a href="/fronted/formulario">Agregar</a>
+				<ul class="menu-vertical">
+				</ul>
+			</li>
+			<li>
+				<a href="#">Tablas</a>
+				
+				<ul class="menu-vertical">
+					<li><a href="tbplana">Monitoreo Planas</a></li>
+					<li><a href="tbactualizar">Mis Aprendizes</a></li>
+				</ul>
+
+			</li>
+			<li><a href="grafico">Grafico</a></li>
+
+		</ul>
+	</nav>
+	
+
+
+    <div class="container p-4">
+    {% block body  %}
+    {% endblock  %}
+    </div>
+
+	
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+</html>
+

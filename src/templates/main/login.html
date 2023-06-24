@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/verificaremail.css') }}">
+    <link rel="Shortcut Icon" href="{{url_for('static', filename='assets/img/tarea.png')}}">
+    <title>Login</title>
+</head>
+
+<body style="background-color: black;">
+    <section>
+        <a href="/fronted/salir" class="sin-linea" id="Exit">Salir</a>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Valide sus datos</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input style="font-size: 85%;" type="text" id="documento">
+                        <label>Correo Electronico</label>
+                    </div>
+                    <div class="inputbox">
+                        <input style="font-size: 90%;" type="password" id="Input">
+                        <label for="">Clave</label>
+
+                        <img src="{{url_for('static', filename='assets/img/ojos.png')}}" id="Clave" class="img">
+                    </div>
+                    <div class="forget">
+
+                        
+                        <p style="color: wheat;cursor: pointer; " type="button" class="sin-linea" onclick="modalclave()" >¿Olvidaste tu contraseña?</p>
+                       
+                    </div>
+
+                    <button id="btnlogin" onclick="Login()" type="button">Ingresar</button>
+                    <br>
+
+                    <br>
+                    
+                     <a href="cuenta"><button  type="button">Crear Cuenta</button></a>  
+                    <div class="register">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- MODAL CORREO -->
+    <div class="modal" id="recuperar">
+        <div class="modal-content">
+            <span class="close"></span>
+            <div class="mensaje">
+                <h1>Verificar Correo</h1>
+            </div>
+            <br>
+            <div class="text">
+                <form class="form-control">
+                    <form>
+                        <img src="{{url_for('static', filename='assets/img/clave1.jpg')}}" style="width: 100px; left: 70px; position: relative;" >
+                        <input class="actu" type="email" id="correo" placeholder="Ingrese Su Correo">                         
+                        <br>
+                        <div id="campoAdicional" style="display: none;">
+                            <input class="actu" type="text" id="confirma" placeholder="Ingrese El Codigo">
+                        </div>
+    
+                        <input class="btn-actualizar" type="button" id="actualizar" onclick="verificarEmail()" type="submit" value="Verificar">
+                     </form>
+                    </form>
+            </div>
+        </div>  
+    </div>
+
+
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{url_for('static', filename='JS/validar.js')}}"></script>
+
+<style>
+  .sin-linea {
+    text-decoration: none;
+  }
+</style>
+</body>
+
+</html>

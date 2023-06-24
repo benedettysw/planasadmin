@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en" title="Coding design">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabla Castigo</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/planas.css') }}">
+    
+</head> 
+
+<body>
+
+    <main class="table">
+        <section class="table__header">
+
+            <h1>Consulta Tus Planas</h1>
+            <label class="label">Si Deseas Buscar Si Tienes Planas:</label>
+
+            <div class="input-group">
+            <input id="buscar" type="search" placeholder="Ingresa Tu Numero De Documento">
+            <img onclick="buscador()" class="img_lupa" src="{{url_for('static', filename='assets/img/lupa.png')}}">              
+            </div>
+             
+        </section>
+        <section class="table__body">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Nombre <span class="icon-arrow"></span></th>
+                        <th> Apellido <span class="icon-arrow"></span></th>
+                        <th> Planas <span class="icon-arrow"></span></th>
+                        <th> Motivo <span class="icon-arrow"></span></th>
+                        <th> Fecha De Inicio <span class="icon-arrow"></span></th>
+
+                    </tr>
+                </thead>
+                <tbody id="tabla">
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="{{url_for('static', filename='JS/buscador.js')}}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+
+</html>
+{% endblock %}

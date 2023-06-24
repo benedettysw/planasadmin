@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Planas</title>
+    <link rel="Shortcut Icon" href="{{url_for('static', filename='assets/img/tarea.png')}}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/estilosindex.css') }}">
+</head>
+<body>
+    <header class="hero">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <h2 class="nav__title" style="color: rgb(255, 255, 255);">Tus Planas Al Dia</h2>
+            </div>
+
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items">
+                    <a href="/fronted/index" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="/fronted/login" class="nav__links">Admin</a>
+                </li>
+                <li class="nav__items">
+                    <a href="/fronted/tbaprndiz" class="nav__links">Mis Planas</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="hero__container container">
+            <h1 class="hero__title">En Esta web Podras Consultar Tus Planas</h1>
+            <p class="hero__paragraph">Elige portarte bien para que no tengas que visitar nuestro sitio, una vez que termines este curso serás
+                capaz de crear cualquier movimiento  con la mano de manera horizontal, vertical  </p>
+        </section>
+    </header>
+    <div class="container p-4">
+        {% block body  %}
+        {% endblock  %}
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
