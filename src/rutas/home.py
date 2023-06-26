@@ -66,3 +66,11 @@ def Modal():
 def cuenta():
     return render_template('/main/cuenta.html')  
 
+@routes_home.route("/admin" ,  methods=['GET'] )
+def admin():
+    return render_template('/main/admin.html')  
+
+@routes_home.route("/tabladmin" ,  methods=['GET'] )
+def tablaadmin():
+    return render_template('/main/tabladmin.html')  
+

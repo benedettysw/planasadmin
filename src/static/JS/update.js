@@ -13,7 +13,7 @@ function mostrar() {
       for (let index = 1; index < length; index++) {
         
         mostrar += ` <tr">
-                <td>${datos[index].id}  </td>  
+                <td>${datos[index].ciudad}  </td>  
                 <td>${datos[index].nombre}  </td>
                 <td>${datos[index].apellido}  </td>
                 <td>${datos[index].curso} </td>  
@@ -37,6 +37,11 @@ function mostrar() {
 window.addEventListener('load', function () {
   mostrar();
 })
+
+
+
+
+
 
 
 
@@ -303,10 +308,21 @@ function searchTable() {
 
 
 function eliminar(id) {
+  Swal.fire({
+    title: '¿Desea eliminar definitivamente ha este aprendiz?',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: 'red',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
   axios.post('delete', {
     ids: id
   })
     .then(function (response) {
+      console.log(response);
+      ajustarIds();
       Swal.fire({
         position: 'top-center',
         icon: 'success',
@@ -314,7 +330,6 @@ function eliminar(id) {
         showConfirmButton: false,
         timer: 3000,
       })
-      console.log(response);
       mostrar();
     })
     .catch(function (error) {
@@ -327,4 +342,11 @@ function eliminar(id) {
         timer: 3000,
       })
     });
+  } else {
+    Swal.fire({
+      title: '¡Proceso cancelado!',
+      icon: 'error'
+    })
+  }
+})
 }

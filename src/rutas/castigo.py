@@ -58,7 +58,7 @@ scheduler.start()
 
 
 
-@scheduler.task('cron', id='actualizar_plana', hour='14', minute='49')
+@scheduler.task('cron', id='actualizar_plana', hour='20', minute='39')
 def actualizar_plana():
     with app.app_context():
         # Obtener la fecha actual
@@ -84,6 +84,7 @@ def actualizar_plana():
             '2023-06-15',
             '2023-06-17',
             '2023-06-18',    
+            '2023-06-25',    
 
          ]
 
