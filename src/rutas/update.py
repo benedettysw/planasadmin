@@ -19,7 +19,6 @@ def viewlistcategor():
     datos= {}
     id_admin=session.get('admin_id')
     resultado = db.session.query(registross).select_from(registross).filter(registross.id_admin == id_admin).all()
-
     # resultado = "select * from planass"
     i=0
     goria = []
@@ -35,9 +34,6 @@ def viewlistcategor():
         }
         goria.append(datos)
     return jsonify(datos)
-
-
-
 
 
 

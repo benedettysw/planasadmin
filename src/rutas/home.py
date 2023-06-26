@@ -1,5 +1,5 @@
 from bd import db, app, ma
-from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
+from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template , url_for
 
 routes_home = Blueprint("routes_home", __name__)
 
@@ -19,9 +19,7 @@ def tbactualizar():
 def tbplana():
     return render_template('/main/tbplanas.html')
 
-@routes_home.route("/login" ,  methods=['GET'] )
-def login():
-    return render_template('/main/login.html')
+
 
 @routes_home.route("/salir" ,  methods=['GET'] )
 def exit():
@@ -73,4 +71,9 @@ def admin():
 @routes_home.route("/tabladmin" ,  methods=['GET'] )
 def tablaadmin():
     return render_template('/main/tabladmin.html')  
+
+
+@routes_home.route("/login" , methods=['GET'] )
+def login():
+    return render_template('/main/login.html')
 

@@ -7,15 +7,35 @@ routes_cuenta = Blueprint("routes_cuenta", __name__)
 
 
 
-@routes_cuenta.route('/perfil',methods=['POST'])
+@routes_cuenta.route('/perfil', methods=['POST'])
 def cuenta():
+    nombre = request.form['nombre']
+    correos = request.form['correo']
+    clave = request.form['clave']
+    clave2 = request.form['clave2']
 
-    nombre= request.form['nombre']
-    correo= request.form['correo']
-    clave= request.form['clave']  
-    clave2= request.form['clave2']  
+    # Verificar si el correo ya está registrado
+    aprendiz_existente = db.session.query(validar).filter(validar.correo == correos).first()
 
-    new_section = validar(nombre, correo, clave,clave2 )
+    if aprendiz_existente:                
+        return "Aprendiz existente en la bd"
+
+    new_section = validar(nombre, correos, clave, clave2)
     db.session.add(new_section)
     db.session.commit()
+    if new_section:
+        admin_id1 = new_section.id
+        nombre_id2 = new_section.Nombre
+        session["admin_id"] = admin_id1
+        session["admin_nombre"] = nombre_id2
+
     return "ok"
+    
+
+  
+
+
+
+# 
+
+

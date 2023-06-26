@@ -15,7 +15,7 @@ def saveSection():
     Curso= request.form['curso'] 
     Nficha = request.form['Nficha']
     documento = request.form['documento']
-    id_admin = session.get("admin_id")  # Obtener el ID del administrador actualmente logueado
+    id_admin = session.get('admin_id')  # Obtener el ID del administrador actualmente logueado
     
     existing_patient = registross.query.filter(
         (registross.Nficha == Nficha) | (registross.Ndocumento == documento)

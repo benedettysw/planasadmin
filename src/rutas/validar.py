@@ -9,7 +9,6 @@ routes_validar= Blueprint("routes_validar", __name__)
 
 
 
-
 @routes_validar.route('/login', methods=['POST'])
 def login():
     usuario = request.json["Ndocumento"]
@@ -23,30 +22,27 @@ def login():
         if (verificacion.contraseña == contraseña):
             session["admin_id"] = admin_id  # Guardar el admin_id en la sesión
             session["admin_nombre"] = admin_nombre  # Guardar el nombre del administrador en la sesión
-           
+            print(admin_id)
 
-            return {"status": "Correcto", "message": "Inicio de sesión exitoso"}
+            return {
+                "status": "Correcto",
+                "message": "Inicio de sesión exitoso",
+                "admin_nombre": admin_nombre  # Incluir el nombre del administrador en la respuesta
+            }
         else:
             return {"status": "Error", "message": "Contraseña incorrecta"}
     else:
         return {"status": "Error", "message": "Correo incorrecto"}
-    
 
 
 
-# @routes_validar.route("/login", methods=["POST"])
-# def login():
-  
-#     correo = request.json["Ndocumento"]
-#     contraseña = request.json["contraseña"]
-#     verificacion = db.session.query(validar).filter(validar.correo == correo,validar.contraseña == contraseña,).first()
 
-#     if verificacion:
-#         session['admin_id'] = verificacion.id
-#         session['Ndocumento'] = verificacion.correo
-#         session['Nombre'] = verificacion.Nombre
-#         return "a"
-    
+
+
+
+
+
+
 
 
 
@@ -57,8 +53,4 @@ def obtener_datos_sesion():
     Ndocumento = session.get('Ndocumento')
     Nombre = session.get('Nombre')
     return jsonify({'adminId': admin_id, 'Ndocumento': Ndocumento, 'Nombre': Nombre})
-
-
-
-
 

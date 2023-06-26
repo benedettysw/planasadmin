@@ -1,7 +1,6 @@
 function Login() {
   const correo = document.getElementById('documento');
   const pass = document.getElementById('Input');
-  
 
   // Validar campos vacíos
   if (correo.value.trim() === '' || pass.value.trim() === '') {
@@ -24,6 +23,7 @@ function Login() {
               logueo();
               console.log(response);
               setTimeout(function() {
+                  // Redireccionar a la página de menú después de 2 segundos
                   window.location.href = '/fronted/menu';
               }, 2000);
           } else {
@@ -42,16 +42,6 @@ function Login() {
           console.log(error);
       });
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

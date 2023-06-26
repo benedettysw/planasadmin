@@ -67,8 +67,15 @@ def logout():
     session.pop('admin_id', None)
     session.pop('admin_nombre', None)
     
-    return render_template('index.html')
-    # return redirect(url_for('index'))
+    return redirect(url_for('inde'))
+
+
+
+
+
+
+
+
 
 @app.route("/")
 def inde():

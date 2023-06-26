@@ -42,54 +42,57 @@ function cuenta() {
   }
 
   axios
-    .post(
-      'perfil',
-      {
-        nombre: nombres.value,
-        correo: correo.value,
-        clave: clave.value,   
-        clave2: clave2.value   
-      },
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+  .post(
+    'perfil',
+    {
+      nombre: nombres.value,
+      correo: correo.value,
+      clave: clave.value,   
+      clave2: clave2.value   
+    },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
       }
-    )
-    .then((res) => {
-      console.log(res.data)
-      if (res.data === 'Aprendiz existente en la bd') {
-        // Mostrar la alerta que el aprendiz existente
-        Swal.fire({
-          position: 'top-center',
-          icon: 'error',
-          title: 'Este Dato ya existe ya fue registrado',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-          document.getElementById('nombre').value="";
-          document.getElementById('correo').value="";
-          document.getElementById('clave').value="";
-          document.getElementById('clave2').value="";
-       
-      } else {
-        // Mostrar la alerta de éxito
-        Swal.fire({
-          position: 'top-center',
-          icon: 'success',
-          title: '¡Registrado Exitosamente!',
-          showConfirmButton: false,
-          timer: 2000,
-          
-         
-        });
-          document.getElementById('nombre').value="";
-          document.getElementById('correo').value="";
-          document.getElementById('clave').value="";
-          document.getElementById('clave2').value=""
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    });
+    }
+  )
+  .then((res) => {
+    console.log(res.data)
+    if (res.data === 'Aprendiz existente en la bd') {
+      // Mostrar la alerta indicando que el correo ya está registrado
+      Swal.fire({
+        position: 'top-center',
+        icon: 'error',
+        title: '¡Este correo ya está registrado!',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      // Restablecer los campos de entrada
+      document.getElementById('nombre').value = "";
+      document.getElementById('correo').value = "";
+      document.getElementById('clave').value = "";
+      document.getElementById('clave2').value = "";
+    } else {
+      // Mostrar la alerta de éxito
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: '¡Registrado Exitosamente!',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      // Restablecer los campos de entrada
+      document.getElementById('nombre').value = "";
+      document.getElementById('correo').value = "";
+      document.getElementById('clave').value = "";
+      document.getElementById('clave2').value = "";
+      // Redirigir al usuario a la página /fronted/menu
+      setTimeout(function () {
+        window.location.href = '/fronted/menu';
+      }, 2000);
+    }
+  })
+  .catch((error) => {
+    console.error(error)
+  });
 }
