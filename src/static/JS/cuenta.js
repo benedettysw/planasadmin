@@ -67,6 +67,11 @@ function cuenta() {
           showConfirmButton: false,
           timer: 2000,
         });
+          document.getElementById('nombre').value="";
+          document.getElementById('correo').value="";
+          document.getElementById('clave').value="";
+          document.getElementById('clave2').value="";
+       
       } else {
         // Mostrar la alerta de éxito
         Swal.fire({
@@ -76,6 +81,10 @@ function cuenta() {
           showConfirmButton: false,
           timer: 2000,
         });
+          document.getElementById('nombre').value="";
+          document.getElementById('correo').value="";
+          document.getElementById('clave').value="";
+          document.getElementById('clave2').value=""
       }
     })
     .catch((error) => {
