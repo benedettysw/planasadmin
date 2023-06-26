@@ -50,13 +50,13 @@ def login():
 
 
 
-# #ALERTA QUE MUESTRA EL INSTRUTOR QUE ENTRO
-# @routes_validar.route('/obtener_datos_sesion')
-# def obtener_datos_sesion():
-#     admin_id = session.get('admin_id')
-#     Ndocumento = session.get('Ndocumento')
-#     Nombre = session.get('Nombre')
-#     return jsonify({'adminId': admin_id, 'Ndocumento': Ndocumento, 'Nombre': Nombre})
+#ALERTA QUE MUESTRA EL INSTRUTOR QUE ENTRO
+@routes_validar.route('/obtener_datos_sesion')
+def obtener_datos_sesion():
+    admin_id = session.get('admin_id')
+    Ndocumento = session.get('Ndocumento')
+    Nombre = session.get('Nombre')
+    return jsonify({'adminId': admin_id, 'Ndocumento': Ndocumento, 'Nombre': Nombre})
 
 
 

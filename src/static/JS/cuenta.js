@@ -80,6 +80,8 @@ function cuenta() {
           title: '¡Registrado Exitosamente!',
           showConfirmButton: false,
           timer: 2000,
+          
+         
         });
           document.getElementById('nombre').value="";
           document.getElementById('correo').value="";

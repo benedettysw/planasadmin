@@ -1,6 +1,7 @@
 function Login() {
   const correo = document.getElementById('documento');
   const pass = document.getElementById('Input');
+  
 
   // Validar campos vacíos
   if (correo.value.trim() === '' || pass.value.trim() === '') {
@@ -66,7 +67,7 @@ img.addEventListener("click", function () {
     }
 })
 function logueo() {
-    axios.get('/fronted/obtener_datos_sesion')
+    axios.get('obtener_datos_sesion')
         .then(function (response) {
             const datos = response.data;
             Swal.fire({
