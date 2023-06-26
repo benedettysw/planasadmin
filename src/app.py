@@ -60,15 +60,15 @@ def redirigir_a_principal():
             return redirect('index.html')
         
 
-app.route('/logout')
+@app.route('/logout')
 def logout():
     # Eliminar datos de sesión, esto cerrará la sesión del usuario
     session.pop('conectado', None)
     session.pop('admin_id', None)
-
+    session.pop('admin_nombre', None)
     
-    return redirect(url_for('inde'))
-
+    return render_template('index.html')
+    # return redirect(url_for('index'))
 
 @app.route("/")
 def inde():

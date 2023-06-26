@@ -20,7 +20,7 @@ def login():
         admin_id = verificacion.id  # Obtener el ID del administrador
         admin_nombre = verificacion.Nombre  # Obtener el nombre del administrador
 
-        if (verificacion.contraseña, contraseña):
+        if (verificacion.contraseña == contraseña):
             session["admin_id"] = admin_id  # Guardar el admin_id en la sesión
             session["admin_nombre"] = admin_nombre  # Guardar el nombre del administrador en la sesión
            

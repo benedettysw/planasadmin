@@ -26,7 +26,7 @@ def viewlistcategor():
     for cate in resultado:
         i+=1	       
         datos[i] = {
-        'ciudad':cate.id,
+        'id':cate.id,
 		'nombre':cate.nombre,
 		'apellido':cate.apellido,                   
 		'curso':cate.curso,         #numero de documento                          

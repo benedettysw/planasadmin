@@ -7,12 +7,14 @@ class validar(db.Model):
     Nombre  = db.Column(db.String(111))
     correo  = db.Column(db.String(111))
     contraseña = db.Column(db.String(111))
+    contraseña2 = db.Column(db.String(111))
     
      
-    def __init__(self,Nombre, correo, contraseña):
+    def __init__(self,Nombre, correo, contraseña,contraseña2):
         self.Nombre = Nombre
         self.correo = correo
         self.contraseña = contraseña  
+        self.contraseña2 = contraseña2 
 
 
 with app.app_context():
@@ -21,4 +23,4 @@ with app.app_context():
 
 class validarSchema(ma.Schema):
     class Meta:
-         fields = ('id', 'Nombre','correo', 'contraseña')
+         fields = ('id', 'Nombre','correo', 'contraseña','contraseña2')

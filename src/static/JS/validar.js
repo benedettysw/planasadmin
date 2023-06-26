@@ -1,32 +1,53 @@
 function Login() {
-    const correo = document.getElementById('documento');
-    const pass = document.getElementById('Input');
-    axios.post('login', {
-        Ndocumento: correo.value,
-        contraseña: pass.value
-    })
-        .then(function (response) {
-            logueo();
-            console.log(response);
-            setTimeout(function() {
-                window.location.href = '/fronted/menu';
-            }, 2000); // Espera 2000 milisegundos (2 segundos) antes de redirigir
-            
-        })
-        .catch(function (error) {
-            console.log(error);
-            Swal.fire({
-                position: 'top-center',
-                icon: 'error',
-                title: '¡Datos invalidos!',
-                showConfirmButton: false,
-                timer: 2000,
-                
-            })
-            document.getElementById('documento').value = "";
-            document.getElementById('Input').value = "";
-        });
+  const correo = document.getElementById('documento');
+  const pass = document.getElementById('Input');
+
+  // Validar campos vacíos
+  if (correo.value.trim() === '' || pass.value.trim() === '') {
+      Swal.fire({
+          position: 'top-center',
+          icon: 'error',
+          title: '¡Ingrese correo y contraseña!',
+          showConfirmButton: false,
+          timer: 2000
+      });
+      return; // Detener la ejecución de la función
+  }
+
+  axios.post('login', {
+      Ndocumento: correo.value,
+      contraseña: pass.value
+  })
+      .then(function (response) {
+          if (response.data.status === 'Correcto') {
+              logueo();
+              console.log(response);
+              setTimeout(function() {
+                  window.location.href = '/fronted/menu';
+              }, 2000);
+          } else {
+              Swal.fire({
+                  position: 'top-center',
+                  icon: 'error',
+                  title: '¡Datos inválidos!',
+                  showConfirmButton: false,
+                  timer: 2000
+              });
+              document.getElementById('documento').value = "";
+              document.getElementById('Input').value = "";
+          }
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
 }
+
+
+
+
+
+
+
 
 
 

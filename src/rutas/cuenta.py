@@ -13,8 +13,9 @@ def cuenta():
     nombre= request.form['nombre']
     correo= request.form['correo']
     clave= request.form['clave']  
+    clave2= request.form['clave2']  
 
-    new_section = validar(nombre, correo, clave )
+    new_section = validar(nombre, correo, clave,clave2 )
     db.session.add(new_section)
     db.session.commit()
     return "ok"

@@ -13,7 +13,7 @@ function mostrar() {
       for (let index = 1; index < length; index++) {
         
         mostrar += ` <tr">
-                <td>${datos[index].ciudad}  </td>  
+                <td>${datos[index].id}  </td>  
                 <td>${datos[index].nombre}  </td>
                 <td>${datos[index].apellido}  </td>
                 <td>${datos[index].curso} </td>  
@@ -180,7 +180,6 @@ function update() {
 
 function castigo() {
   const plana = document.getElementById("plana")
-  
   const motivo = document.getElementById("motivo")
   const estado = document.getElementById("estado")
   const finicio = document.getElementById("finicio")
