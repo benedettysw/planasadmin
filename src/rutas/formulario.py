@@ -8,6 +8,7 @@ routes_formulario = Blueprint("routes_section", __name__)
 
 
 @routes_formulario.route('/guardar',methods=['POST'])
+
 def saveSection():
     
     nombre= request.form['nombre']
@@ -15,6 +16,7 @@ def saveSection():
     Curso= request.form['curso'] 
     Nficha = request.form['Nficha']
     documento = request.form['documento']
+    # foto = request.form['photo'] 
     id_admin = session.get('admin_id')  # Obtener el ID del administrador actualmente logueado
     
     existing_patient = registross.query.filter(
@@ -28,5 +30,8 @@ def saveSection():
     db.session.add(new_section)
     db.session.commit()
     return "ok"
+
+
+
 
 

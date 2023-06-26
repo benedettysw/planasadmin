@@ -4,7 +4,7 @@ function guardar() {
   const cursos = document.getElementById('curso');
   const Nfichas = document.getElementById('Nficha');
   const documento = document.getElementById('documento');
-  // const id_admins = document.getElementById('id_admin');
+
 
 
 
@@ -20,8 +20,7 @@ function guardar() {
         curso: cursos.value,
         Nficha: Nfichas.value,
         documento: documento.value,
-        // id_admin: id_admin.value,
-      
+     
 
 
 
@@ -58,3 +57,4 @@ function guardar() {
       console.error(error)
     })
 }
+
