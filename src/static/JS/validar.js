@@ -56,6 +56,9 @@ img.addEventListener("click", function () {
         input.type = "password"
     }
 })
+
+
+
 function logueo() {
     axios.get('obtener_datos_sesion')
         .then(function (response) {
