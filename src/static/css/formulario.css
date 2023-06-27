@@ -3,8 +3,8 @@
 }
 
 body {
-    background-image:url(https://get.pxhere.com/photo/text-writing-instrument-accessory-hand-writing-design-writing-implement-font-homework-child-adaptation-drawing-learning-finger-Office-instrument-student-1625637.jpg);
-    color: #fff;  
+    background-image: url(https://get.pxhere.com/photo/text-writing-instrument-accessory-hand-writing-design-writing-implement-font-homework-child-adaptation-drawing-learning-finger-Office-instrument-student-1625637.jpg);
+    color: #fff;
     line-height: 1.6;
     font-family: 'Quicksand', sans-serif;
     padding: 0 1.5em;
@@ -126,14 +126,10 @@ ul {
         text-align: left;
     }
 }
-.content{
+
+.content {
     position: absolute;
-<<<<<<< HEAD
-    top: 30%;
-    width: 100%;
-=======
     top: 18%;
     width: 75%;
     left: 13%;
->>>>>>> da707bca9bcd9881a43dd89e468deab3237f5953
 }
