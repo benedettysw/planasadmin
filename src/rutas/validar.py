@@ -16,7 +16,7 @@ def login():
     verificacion = db.session.query(validar).filter(validar.correo == usuario).first()
 
     if verificacion:
-        admin_id = verificacion.id  # Obtener el ID del administrador
+        admin_id = verificacion.id  # Obtener el ID del administrador alalalaa
         admin_nombre = verificacion.Nombre  # Obtener el nombre del administrador
 
         if (verificacion.contraseña == contraseña):
