@@ -42,7 +42,6 @@ def login():
 @routes_validar.route('/obtener_datos_sesion')
 def obtener_datos_sesion():
     admin_id = session.get('admin_id')
-    Ndocumento = session.get('correo')
-    Nombre = session.get('Nombre')
-    return jsonify({'adminId': admin_id, 'correo': Ndocumento, 'Nombre': Nombre})
+    Nombre = session.get('admin_nombre')
+    return jsonify({'adminId': admin_id, 'Nombre': Nombre})
 
