@@ -66,7 +66,7 @@ function logueo() {
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'Bienvenido ' + datos.Nombre,
+                title: 'Bienvenido' + datos.Nombre,
                 showConfirmButton: false,
                 timer: 2000,
             })

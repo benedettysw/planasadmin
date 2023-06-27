@@ -336,7 +336,7 @@ function eliminar(id) {
       Swal.fire({
         position: 'top-center',
         icon: 'error',
-        title: '¡Este Aprendiz Debe Plana No Puede Ser Eliminado!',
+        title: '¡Este Aprendiz Debe Planas, No Puede Ser Eliminado!',
         showConfirmButton: false,
         timer: 3000,
       })
