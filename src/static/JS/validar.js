@@ -109,6 +109,7 @@ function modalclave() {
         if (response.data === 'a') {
           document.getElementById('campoAdicional').style.display = 'block';
           console.log(response);
+          enviarcodigo()
           setTimeout(function () {
             Swal.fire({
               position: 'top-center',
@@ -146,93 +147,57 @@ function modalclave() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   //-------------ESTE ES PARA VERIFICAR EMAIL-------------//
-// function verificarEmail() {
-//   const Email = document.getElementById('confirma');
   
 
-//   function mostrarAlerta() {
-//     Swal.fire({
-//       title: "Correo enviado",
-//       text: "Se ha enviado un correo con instrucciones para recuperar la contraseña.",
-//       icon: "success",
-//       confirmButtonText: "Aceptar",
-//       customClass: {
-//         popup: 'my-custom-class',
-//       }
-//     }).then(function(result) {
-//       formularioCode.style.display = "block";
-//       formularioNuevo.style.display = "none";
-//     });
-//   }
+  function enviarcodigo() {
+    const gmail = document.getElementById('correo');
+  
+    axios.post('codigo', {
+      gmails: gmail.value,
+    })
+      .then(function (response) {
+        console.log(response);
+        // Aquí puedes agregar cualquier otra acción que desees realizar después de enviar el código
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-//   function mostrarErrorDemasiadasSolicitudes(timeToWait) {
-//     const hours = Math.floor(timeToWait / 3600);
-//     const minutes = Math.floor((timeToWait % 3600) / 60);
-//     const seconds = Math.floor(timeToWait % 60);
 
-//     Swal.fire({
-//       title: "Demasiadas solicitudes",
-//       text: `Se han realizado demasiadas solicitudes en un período corto de tiempo. Inténtalo de nuevo en ${hours} hora(s), ${minutes} minuto(s), y ${seconds} segundo(s).`,
-//       icon: "error",
-//       confirmButtonText: "Reintentar",
-//       showCloseButton: true, // Agrega la opción showCloseButton para mostrar el botón de cerrar
-//       customClass: {
-//         popup: 'my-custom-class',
-//       }
-//     }).then(function(result) {
-//       if (result.isConfirmed) {
-//         verificarEmail(); // Llamada recursiva
-//       }
-//     });
-//   }
 
-//   function mostrarError() {
-//     Swal.fire({
-//       title: "Error",
-//       text: "Se ha producido un error al procesar su solicitud. Inténtalo de nuevo más tarde.",
-//       icon: "error",
-//       confirmButtonText: "Aceptar",
-//       customClass: {
-//         popup: 'my-custom-class',
-//       }
-//     });
-//   }
+  function confirmacodigo() {
+    const codigo = document.getElementById('confirma').value;
+  
+    axios.post('verificarcode', {
+      verification_code: codigo,
+    })
+      .then(function (response) {
+        if (response.data.message !== 'Código verificado correctamente') {
+          Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: '¡Código no válido!',
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        } else {
+          console.log(response);
+          setTimeout(function () {
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: '¡Código Correcto!',
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }, );
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  
 
-//   axios.post('forgotpassword', {
-//     fullcorreo: Email.value,
-//   })
-//   .then(function(response) {
-//     mostrarAlerta();
-//   })
-//   .catch(function(error) {
-//     console.log(error);
-//     if (error.response.status === 429) {
-//       const timeToWait = error.response.data.time_to_wait;
-//       mostrarErrorDemasiadasSolicitudes(timeToWait);
-//     } else {
-//       mostrarError();
-//     }
-//   });
-// };
+
