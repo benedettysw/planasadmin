@@ -99,7 +99,7 @@ label .letra{
     padding: 5px;
     border-radius: 5px;
     border: 1px solid gray;
-    margin-left: 95%;
+    /* margin-left: 95%; */
     margin-top: 5px;
 }
 

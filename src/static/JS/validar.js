@@ -90,7 +90,6 @@ recuperar.addEventListener('click', function (event) {
 
   
 function modalclave() { 
-    
     recuperar.style.display = 'block';
   }
 
@@ -184,6 +183,9 @@ function modalclave() {
         } else {
           console.log(response);
           setTimeout(function () {
+            modalclave1()
+            const modalActual = document.getElementById('recuperar');
+            modalActual.style.display = 'none';
             Swal.fire({
               position: 'top-center',
               icon: 'success',
@@ -199,5 +201,16 @@ function modalclave() {
       });
   }
   
+//MODAL DE LA CLAVE
 
-
+  var clave = document.querySelector('.modal1');
+  clave.addEventListener('click', function (event) {
+      if (event.target === clave) {
+          clave.style.display = 'none';
+      }
+    });
+  
+    
+  function modalclave1() { 
+      clave.style.display = 'block';
+    }

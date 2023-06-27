@@ -122,19 +122,19 @@ def verificarcode():
 
     
 
-# @routes_olvidado.route('/actualizar_contrasena', methods=['POST'])
-# def actualizar_contrasena():
-#     correo = request.form['email']
-#     nueva_contrasena = request.form['nueva_contrasena']
+@routes_olvidado.route('/actualizar_contrasena', methods=['POST'])
+def actualizar_contrasena():
+    correo = request.form['email']
+    nueva_contrasena = request.form['nueva_contrasena']
 
-#     usuario = validar.query.filter_by(CorreoElectronico=correo).first()
+    usuario = validar.query.filter_by(CorreoElectronico=correo).first()
 
-#     if usuario:
-#         usuario.Contrasena = nueva_contrasena
-#         db.session.commit()
-#         return "Contraseña actualizada correctamente"
-#     else:
-#         return "Usuario no encontrado"
+    if usuario:
+        usuario.Contrasena = nueva_contrasena
+        db.session.commit()
+        return "Contraseña actualizada correctamente"
+    else:
+        return "Usuario no encontrado"
     
 # @routes_olvidado.route('/obtener_datos', methods=['POST'])
 # def obtener_datos():
