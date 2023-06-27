@@ -2,49 +2,37 @@ function mostrar() {
   const divcate = document.getElementById('tabla');
   axios.get('mostrars', {
     responseType: 'json'
-
-
   })
-     
     .then(function (response) {
       let datos = response.data
       var length = (Object.keys(datos).length) + 1;
       let mostrar = '';
       for (let index = 1; index < length; index++) {
-        
-        mostrar += ` <tr">
-                <td>${datos[index].id}  </td>  
-                <td>${datos[index].nombre}  </td>
-                <td>${datos[index].apellido}  </td>
-                <td>${datos[index].curso} </td>  
-                <td>${datos[index].Nficha}  </td>   
-                <td>${datos[index].Ndocumento}  </td>   
-                <td> <button class="btxn" onclick="openModal(${datos[index].id})">Castigo</button> 
-                 <button class="btxn1" onclick="openModal2(${datos[index].id}, '${datos[index].nombre}', '${datos[index].apellido}', '${datos[index].curso}', '${datos[index].Nficha}','${datos[index].Ndocumento}')">Actualizar</button> 
-                 <img title="Eliminara al aprendiz asignado" style="cursor:pointer;" onclick="eliminar(${datos[index].id})" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/bin_delete_file_garbage_recycle_remove_trash_icon_123192.png" >
-                 </td>
-              </tr> `;
-
-
+        mostrar += `<tr>
+          <td>${datos[index].id}</td>
+          <td>${datos[index].nombre}</td>
+          <td>${datos[index].apellido}</td>
+          <td>${datos[index].curso}</td>
+          <td>${datos[index].Nficha}</td>
+          <td>${datos[index].Ndocumento}</td>
+          <td><img src="data:image/jpeg;base64,${datos[index].foto}" alt="Foto"></td>
+          <td>
+            <button class="btxn" onclick="openModal(${datos[index].id})">Castigo</button>
+            <button class="btxn1" onclick="openModal2(${datos[index].id}, '${datos[index].nombre}', '${datos[index].apellido}', '${datos[index].curso}', '${datos[index].Nficha}','${datos[index].Ndocumento}')">Actualizar</button>
+            <img title="Eliminar al aprendiz asignado" style="cursor:pointer;" onclick="eliminar(${datos[index].id})" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/bin_delete_file_garbage_recycle_remove_trash_icon_123192.png">
+          </td>
+        </tr>`;
       }
-      divcate.innerHTML = mostrar
+      divcate.innerHTML = mostrar;
     })
     .catch(function (error) {
-      // Maneja los errores aquí
       console.log(error);
     });
 }
+
 window.addEventListener('load', function () {
   mostrar();
-})
-
-
-
-
-
-
-
-
+});
 
 
 
@@ -118,21 +106,25 @@ function update() {
   const Nfichas = document.getElementById('Nficha');
   const documento = document.getElementById('documento');
 
+  const idValue = ontide.textContent;
+  const nombreValue = name.textContent;
+  const apellidoValue = Apellidos.textContent;
+  const cursoValue = cursos.textContent;
+  const NfichaValue = Nfichas.textContent;
+  const documentoValue = documento.textContent;
 
   axios
-    .post(
-      'actualizar',
-      {
-        id: ontide.value,
-        nombre: name.value,
-        apellido: Apellidos.value,
-        curso: cursos.value,
-        Nficha: Nfichas.value,
-        documento: documento.value
-
-
-      },
-      {
+  .post(
+    'actualizar',
+    {
+      id: idValue,
+      nombre: nombreValue,
+      apellido: apellidoValue,
+      curso: cursoValue,
+      Nficha: NfichaValue,
+      documento: documentoValue
+    },
+    {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
