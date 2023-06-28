@@ -1,9 +1,8 @@
 from bd import db
-from flask import Blueprint, request, jsonify,session
+from flask import Blueprint, request, jsonify,session 
 from Model.registro import registross
 from Model.plana import planass
-
-
+import base64 
 
 
 routes_mostrar = Blueprint("routes_listcategory", __name__)
@@ -24,7 +23,8 @@ def viewlistcategor():
     i=0
     goria = []
     for cate in resultado:
-        i+=1	       
+        i+=1	    
+        foto = base64.b64encode(cate.foto).decode('utf-8') if cate.foto else ''    
         datos[i] = {
         'id':cate.id,
 		'nombre':cate.nombre,
@@ -32,10 +32,14 @@ def viewlistcategor():
 		'curso':cate.curso,         #numero de documento                          
 		'Nficha':cate.Nficha,                                    
 		'Ndocumento':cate.Ndocumento,                                    
+		'foto':foto,                                    
         }
         goria.append(datos)
         
     return jsonify(datos)
+
+
+
 
 
 

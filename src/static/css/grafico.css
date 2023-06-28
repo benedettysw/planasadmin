@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
   font-family: 'Poppins', monospace;
   color: white;
   font-size: .7em;
   font-weight: 200;
   letter-spacing: 1px;
-}
+} */
 
 html {
   padding: 20px;

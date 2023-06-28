@@ -2,8 +2,8 @@
 
 
 .modal1 {
-    align-items: center;
-    justify-content: center;
+    
+   
     display: none;
     /*Ocultaelmodalpordefecto*/
     position: fixed;
@@ -23,12 +23,19 @@
 /* Estilos para el contenido del modal */
 
 .modal-content {
+    position: fixed;
+    /* Cambiar la posición a fija */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* Centrar el modal en el centro de la pantalla */
     background-color: #fefefe;
-    margin: 15% auto;
-    /* Centra el modal verticalmente y lo desplaza hacia abajo */
+    margin: 0 auto;
+    /* Eliminar el margen superior */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+    max-width: 400px;
 }
 
 .modal-content1 {
