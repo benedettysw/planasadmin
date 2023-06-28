@@ -31,7 +31,8 @@
     padding: 20px;
     width: 30%;
     -webkit-border-radius: 15px;
-    align-items: center;
+    /* align-items: center; */
+    height: 50%;
 }
 
 

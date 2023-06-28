@@ -3,8 +3,8 @@
 
 <head>
     <link rel="stylesheet" href="{{ url_for('static' , filename='css/login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/verificaremail.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static' , filename='css/contraseña.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static' , filename='css/verificaremail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/contraseña.css') }}"> -->
     <link rel="Shortcut Icon" href="{{url_for('static', filename='assets/img/tarea.png')}}">
     <title>Login</title>
 </head>
@@ -30,7 +30,7 @@
                     <div class="forget">
 
                         
-                        <p style="color: wheat;cursor: pointer; " type="button" class="sin-linea" onclick="modalclave()" >¿Olvidaste tu contraseña?</p>
+                       <a href="clave" style="color: wheat;cursor: pointer; " type="button" class="sin-linea" onclick="modalclave()" >¿Olvidaste tu contraseña?</a>
                        
                     </div>
 
@@ -63,13 +63,13 @@
                         <img src="{{url_for('static', filename='assets/img/clave1.jpg')}}" style="width: 100px; left: 70px; position: relative;" >
                         <input class="actu" type="email" id="correo" placeholder="Ingrese Su Correo">                         
                         <br>
+                        <input  type="button" id="buscar"  onclick="verificarEmail()" type="submit" value="Buscar">
                         <div id="campoAdicional" style="display: none;">
                             <input class="actu" type="text" id="confirma" placeholder="Ingrese El Codigo">
-                            
-                            <input class="btn-actualizar" type="button" id="actualizar" onclick="confirmacodigo()" type="submit" value="codigo">
+                            <input type="button" onclick="confirmacodigo()" type="submit" value="verificar codigo">
                         </div>
     
-                        <input class="btn-actualizar" type="button" id="actualizar" onclick="verificarEmail()" type="submit" value="Verificar">
+                       
                      </form>
                     </form>
             </div>
@@ -89,7 +89,7 @@
                         <input  type="text" id="password" placeholder="Nueva Contraseña">                         
                         <input  type="text" id="password1" placeholder="Nueva Contraseña">
                         
-                        <input class="btn-actualizar" type="button" id="actualizar" onclick="verificarEmail()" type="submit" value="Guardar">
+                        <input class="btn-actualizar" type="button" id="actualizar" onclick="restablecerclave()" type="submit" value="Guardar">
                      </form>
                     </form>
             </div>

@@ -77,3 +77,6 @@ def tablaadmin():
 def login():
     return render_template('/main/login.html')
 
+@routes_home.route("/clave" , methods=['GET'] )
+def correo():
+    return render_template('/main/recuperarclave.html')

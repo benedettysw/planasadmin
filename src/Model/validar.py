@@ -3,7 +3,7 @@ from bd import db, app, ma
 class validar(db.Model):
     __tablename__ = "validar"
     
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True )
     Nombre  = db.Column(db.String(111))
     correo  = db.Column(db.String(111))
     contraseña = db.Column(db.String(111))

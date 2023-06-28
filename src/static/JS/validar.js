@@ -5,7 +5,7 @@ function Login() {
   // Validar campos vacíos
   if (correo.value.trim() === '' || pass.value.trim() === '') {
       Swal.fire({
-          position: 'top-center',
+          position: 'center',
           icon: 'error',
           title: '¡Ingrese correo y contraseña!',
           showConfirmButton: false,
@@ -97,33 +97,35 @@ function modalclave() {
 
 
 
-
   function verificarEmail() {
     const gmail = document.getElementById('correo');
+    const btnBuscar = document.getElementById('buscar'); // Obtener referencia al botón "Buscar"
   
     axios.post('verificarcorreo', {
       gmails: gmail.value,
     })
       .then(function (response) {
-        if (response.data === 'a') {
-          document.getElementById('campoAdicional').style.display = 'block';
-          console.log(response);
-          enviarcodigo()
+        if (response.data.message === 'Correo válido') {
+  
+          enviarcodigo();
           setTimeout(function () {
             Swal.fire({
               position: 'top-center',
               icon: 'success',
-              title: '¡Se Envio Un Codigo A Su  Correo!',
+              title: '¡Se Envio Un Codigo A Su Correo!',
               showConfirmButton: false,
               timer: 3000,
             });
-           
-          },); // Espera 2000 milisegundos (2 segundos) antes de redirigir
+            document.getElementById('campoAdicional').style.display = 'block';
+            btnBuscar.style.display = 'none'; // Ocultar el botón "Buscar"
+  
+            // Llamar a la función restablecerclave() con el ID del usuario
+          }, 2000);
         } else {
           Swal.fire({
             position: 'top-center',
             icon: 'error',
-            title: '¡Correo no válido!',
+            title: '¡Correo no registrado!',
             showConfirmButton: false,
             timer: 2000,
           });
@@ -143,9 +145,8 @@ function modalclave() {
       });
   }
   
-
-
-
+  
+  
   
 
   function enviarcodigo() {
@@ -155,7 +156,6 @@ function modalclave() {
       gmails: gmail.value,
     })
       .then(function (response) {
-        console.log(response);
         // Aquí puedes agregar cualquier otra acción que desees realizar después de enviar el código
       })
       .catch(function (error) {
@@ -166,13 +166,19 @@ function modalclave() {
 
 
   function confirmacodigo() {
-    const codigo = document.getElementById('confirma').value;
+    const verificarcodigo = document.getElementById('confirma').value;
   
     axios.post('verificarcode', {
-      verification_code: codigo,
+      codigo: verificarcodigo,
     })
       .then(function (response) {
-        if (response.data.message !== 'Código verificado correctamente') {
+        if (response.data.message === 'Código verificado correctamente') {
+          setTimeout(function () {
+            modalclave1();
+            const modalActual = document.getElementById('recuperar');
+            modalActual.style.display = 'none';
+          });
+        } else {
           Swal.fire({
             position: 'top-center',
             icon: 'error',
@@ -180,26 +186,15 @@ function modalclave() {
             showConfirmButton: false,
             timer: 2000,
           });
-        } else {
-          console.log(response);
-          setTimeout(function () {
-            modalclave1()
-            const modalActual = document.getElementById('recuperar');
-            modalActual.style.display = 'none';
-            Swal.fire({
-              position: 'top-center',
-              icon: 'success',
-              title: '¡Código Correcto!',
-              showConfirmButton: false,
-              timer: 3000,
-            });
-          }, );
         }
       })
       .catch(function (error) {
         console.log(error);
       });
   }
+  
+
+  
   
 //MODAL DE LA CLAVE
 
@@ -210,7 +205,40 @@ function modalclave() {
       }
     });
   
-    
+  // Después de mostrar la notificación emergente de éxito en la función verificarEmail()
+  
   function modalclave1() { 
+
       clave.style.display = 'block';
     }
+
+
+    function restablecerclave() {
+      const password = document.getElementById("password").value;
+      const password1 = document.getElementById("password1").value;
+    
+      if (password === "" || password1 === "") {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+    
+      if (password !== password1) {
+        alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
+        return;
+      }
+    
+      axios
+        .post('actualizarpass', {
+          password: password,
+          password1: password1
+        })
+        .then(function (response) {
+          // Manejar la respuesta del servidor en caso de éxito
+          alert("Contraseña actualizada exitosamente.");
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
+        });
+    }
+    

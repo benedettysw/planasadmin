@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Olvidaste tu contraseña - Facebook</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+          }
+          
+          .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+          }
+          
+          .logo {
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          
+          .logo img {
+            width: 120px;
+          }
+          
+          .form {
+            text-align: center;
+          }
+          
+          h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+          }
+          
+          p {
+            margin-bottom: 20px;
+          }
+          
+          form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          }
+          
+          button {
+            background-color: #1877f2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+          
+          button:hover {
+            background-color: #166fe5;
+          }
+          
+          a {
+            text-decoration: none;
+            color: #1877f2;
+          }
+          
+          a:hover {
+            text-decoration: underline;
+          }
+             
+    </style>
+  <div class="container">
+    <div class="logo">
+        <img src="{{url_for('static', filename='assets/img/libros.png')}}">
+
+    </div>
+    <div class="form">
+      <h2>Olvidaste tu contraseña</h2>
+      <p>Por favor, ingresa tu dirección de correo electrónico para restablecer tu contraseña.</p>
+      <form>
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+        <button type="submit">Restablecer contraseña</button>
+      </form>
+      <p>Volver a <a href="#">Iniciar sesión</a></p>
+    </div>
+  </div>
+</body>
+</html>

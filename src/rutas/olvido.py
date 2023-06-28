@@ -27,9 +27,10 @@ def correo():
 
     if verificacions:
         session['gmails'] = verificacions.correo
-        return "a"
+        return jsonify({'message': 'Correo válido', 'id': verificacions.id})
     else:
-        return "Correo no válido"
+        return jsonify({'message': 'Correo no válido'})
+
 
 
 
@@ -101,11 +102,11 @@ def forgotpassword():
     
 @routes_olvidado.route('/verificarcode', methods=['POST'])
 def verificarcode():
-    verification_code = request.json['verification_code']
-    stored_code = session.get('verification_code')
+    verification_code = request.json['codigo']
+    stored_code = session.get('verification_code') 
     
-    # print(f"Verification code received: {verification_code}")
-    # print(f"Stored code in session: {stored_code}")
+    print(f"Verification code received: {verification_code}")
+    print(f"Stored code in session: {stored_code}")
     
     if verification_code == stored_code:
         # Si el código es correcto, redireccionar al usuario a la página de cambio de contraseña
@@ -115,26 +116,37 @@ def verificarcode():
         return jsonify(response_body), status
     else:
         # Si el código no es correcto, devolver un error
-        response_body = {'message': 'El código ingresado es incorrecto. Inténtalo de nuevo.'}
-        status = 401
-        return jsonify(response_body), status
+       return ({'message ':'El código ingresado es incorrecto. Inténtalo de nuevo'})
 
 
     
 
-@routes_olvidado.route('/actualizar_contrasena', methods=['POST'])
-def actualizar_contrasena():
-    correo = request.form['email']
-    nueva_contrasena = request.form['nueva_contrasena']
+@routes_olvidado.route('/actualizarpass', methods=['POST'])
+def actualiza():
+    id = request.form.get('dni')
+    contraseña = request.json['password']
+    contraseña1 = request.json['password1']
+    print(id)
 
-    usuario = validar.query.filter_by(CorreoElectronico=correo).first()
+    # Verificar si el usuario existe
+    restablecer = validar.query.get(id)
+    if restablecer:
+        # Actualizar la contraseña
+        restablecer.contraseña = contraseña
+        restablecer.contraseña2 = contraseña1
 
-    if usuario:
-        usuario.Contrasena = nueva_contrasena
+        # Guardar los cambios en la base de datos
         db.session.commit()
-        return "Contraseña actualizada correctamente"
+
+        # Enviar una respuesta exitosa
+        return jsonify({'message': 'Contraseña actualizada correctamente'})
     else:
-        return "Usuario no encontrado"
+        # Enviar una respuesta de usuario no encontrado
+        return jsonify({'message': 'Usuario no encontrado'})
+
+
+    
+    
     
 # @routes_olvidado.route('/obtener_datos', methods=['POST'])
 # def obtener_datos():
