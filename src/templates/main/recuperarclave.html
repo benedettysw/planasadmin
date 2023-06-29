@@ -2,83 +2,10 @@
 <html>
 <head>
   <title>Olvidaste tu contraseña - Facebook</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="{{ url_for('static' , filename='css/contraseña.css') }}"> 
+
 </head>
 <body>
-    <style>
-        body {
-            background-color: #f0f2f5;
-            font-family: Arial, sans-serif;
-          }
-          
-          .container {
-            max-width: 400px;
-            margin: 100px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-          }
-          
-          .logo {
-            text-align: center;
-            margin-bottom: 20px;
-          }
-          
-          .logo img {
-            width: 120px;
-          }
-          
-          .form {
-            text-align: center;
-          }
-          
-          h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-          }
-          
-          p {
-            margin-bottom: 20px;
-          }
-          
-          form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-          }
-          
-          button {
-            background-color: #1877f2;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-          }
-          
-          button:hover {
-            background-color: #166fe5;
-          }
-          
-          a {
-            text-decoration: none;
-            color: #1877f2;
-          }
-          
-          a:hover {
-            text-decoration: underline;
-          }
-             
-    </style>
   <div class="container">
     <div class="logo">
         <img src="{{url_for('static', filename='assets/img/libros.png')}}">
@@ -88,11 +15,46 @@
       <h2>Olvidaste tu contraseña</h2>
       <p>Por favor, ingresa tu dirección de correo electrónico para restablecer tu contraseña.</p>
       <form>
-        <input type="email" id="email" placeholder="Correo electrónico" required>
-        <button type="submit">Restablecer contraseña</button>
+        <input type="email" id="correo"  placeholder="Correo electrónico" required>
+        <button type="button" type="submit" id="buscar" onclick="verificarEmail()" >Buscar Correo</button>
+        <div id="campoAdicional" style="display: none;">
+          <input type="text" id="verificarcodido"  placeholder="Ingresa el codigo" required>
+        
+          <input type="button" id="confirma" onclick="confirmacodigo()" type="submit" value="verificar codigo">
+      </div>
       </form>
-      <p>Volver a <a href="#">Iniciar sesión</a></p>
+      <p id="mensaje-codigo" style="color: red; display: none;">Codigo ingresa incorresto</p>
+      
+      <p id="mensaje-error" style="color: red; display: none;">No hay resultados de búsqueda. Tu búsqueda no arrojó ningún resultado. Vuelve a intentarlo con otros datos.</p>
+      <p>Volver a <a href="login">Iniciar sesión</a></p>
     </div>
   </div>
+
+
+
+  <div class="container">
+    <div class="logo">
+        <img src="{{url_for('static', filename='assets/img/password.png')}}">
+
+    </div>
+    <div class="form">
+      <h2>Ingresa tu nueva contaseña</h2>
+      <form>
+        <input type="email" id="correo"  placeholder="Correo electrónico" required>
+        <input type="email" id="correo"  placeholder="Correo electrónico" required>
+        <button type="button" type="submit" id="buscar" onclick="verificarEmail()" >Buscar Correo</button>
+        <div id="campoAdicional" style="display: none;">
+          <input type="text" id="verificarcodido"  placeholder="Ingresa el codigo" required>
+        
+      </div>
+      
+    </div>
+  </div>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script src="{{url_for('static', filename='JS/validar.js')}}"></script>
+
 </body>
 </html>

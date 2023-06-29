@@ -96,55 +96,36 @@ function modalclave() {
 
 
 
-
+  
   function verificarEmail() {
-    const gmail = document.getElementById('correo');
-    const btnBuscar = document.getElementById('buscar'); // Obtener referencia al botón "Buscar"
+    const gmail = document.getElementById('correo').value;
+    const buscars = document.getElementById('buscar');
   
     axios.post('verificarcorreo', {
-      gmails: gmail.value,
+      gmails: gmail,
     })
       .then(function (response) {
         if (response.data.message === 'Correo válido') {
-  
           enviarcodigo();
-          setTimeout(function () {
-            Swal.fire({
-              position: 'top-center',
-              icon: 'success',
-              title: '¡Se Envio Un Codigo A Su Correo!',
-              showConfirmButton: false,
-              timer: 3000,
-            });
-            document.getElementById('campoAdicional').style.display = 'block';
-            btnBuscar.style.display = 'none'; // Ocultar el botón "Buscar"
-  
-            // Llamar a la función restablecerclave() con el ID del usuario
-          }, 2000);
+          document.getElementById('campoAdicional').style.display = 'block';
+          buscars.style.display = 'none';
+          document.getElementById('mensaje-error').style.display = 'none';
+
+
         } else {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'error',
-            title: '¡Correo no registrado!',
-            showConfirmButton: false,
-            timer: 2000,
-          });
+          // Mostrar el mensaje de error
+          document.getElementById('mensaje-error').style.display = 'block';
           document.getElementById('correo').value = '';
         }
       })
       .catch(function (error) {
         console.log(error);
-        Swal.fire({
-          position: 'top-center',
-          icon: 'error',
-          title: '¡Error de conexión!',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        // Manejar el error de conexión
         document.getElementById('correo').value = '';
       });
   }
   
+      
   
   
   
@@ -166,26 +147,23 @@ function modalclave() {
 
 
   function confirmacodigo() {
-    const verificarcodigo = document.getElementById('confirma').value;
+    const verificarcodigos = document.getElementById('verificarcodido').value;
   
     axios.post('verificarcode', {
-      codigo: verificarcodigo,
+      codigo: verificarcodigos,
     })
       .then(function (response) {
         if (response.data.message === 'Código verificado correctamente') {
           setTimeout(function () {
             modalclave1();
             const modalActual = document.getElementById('recuperar');
+          document.getElementById('mensaje-codigo').style.display = 'none';
+
             modalActual.style.display = 'none';
           });
         } else {
-          Swal.fire({
-            position: 'top-center',
-            icon: 'error',
-            title: '¡Código no válido!',
-            showConfirmButton: false,
-            timer: 2000,
-          });
+          document.getElementById('mensaje-codigo').style.display = 'block';
+          document.getElementById('verificarcodido').value = '';
         }
       })
       .catch(function (error) {
