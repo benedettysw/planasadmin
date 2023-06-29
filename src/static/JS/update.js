@@ -15,9 +15,7 @@ function mostrar() {
           <td>${datos[index].curso}</td>
           <td>${datos[index].Nficha}</td>
           <td>${datos[index].Ndocumento}</td>
-          <td><img src="data:image/jpeg;base64,${datos[index].foto}" alt="Foto"></td>
-          <td>
-            <button class="btxn" onclick="openModal(${datos[index].id})">Castigo</button>
+           <td> <button class="btxn" onclick="openModal(${datos[index].id})">Castigo</button>
             <button class="btxn1" onclick="openModal2(${datos[index].id}, '${datos[index].nombre}', '${datos[index].apellido}', '${datos[index].curso}', '${datos[index].Nficha}','${datos[index].Ndocumento}')">Actualizar</button>
             <img title="Eliminar al aprendiz asignado" style="cursor:pointer;" onclick="eliminar(${datos[index].id})" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/bin_delete_file_garbage_recycle_remove_trash_icon_123192.png">
           </td>
@@ -106,25 +104,21 @@ function update() {
   const Nfichas = document.getElementById('Nficha');
   const documento = document.getElementById('documento');
 
-  const idValue = ontide.textContent;
-  const nombreValue = name.textContent;
-  const apellidoValue = Apellidos.textContent;
-  const cursoValue = cursos.textContent;
-  const NfichaValue = Nfichas.textContent;
-  const documentoValue = documento.textContent;
 
   axios
-  .post(
-    'actualizar',
-    {
-      id: idValue,
-      nombre: nombreValue,
-      apellido: apellidoValue,
-      curso: cursoValue,
-      Nficha: NfichaValue,
-      documento: documentoValue
-    },
-    {
+    .post(
+      'actualizar',
+      {
+        id: ontide.value,
+        nombre: name.value,
+        apellido: Apellidos.value,
+        curso: cursos.value,
+        Nficha: Nfichas.value,
+        documento: documento.value
+
+
+      },
+      {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -153,12 +147,6 @@ function update() {
       
     })
 }
-
-
-
-
-
-
 
 
 

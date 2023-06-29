@@ -121,28 +121,23 @@ def verificarcode():
 
     
 
-@routes_olvidado.route('/actualizarpass', methods=['POST'])
-def actualiza():
-    id = request.form.get('dni')
-    contraseña = request.json['password']
-    contraseña1 = request.json['password1']
-    print(id)
+# @routes_olvidado.route('/actualizarpass', methods=['POST'])
+# def actualiza():
+#     correo = request.form.get('correo')  # Asegúrate de enviar el correo desde el cliente
+#     contraseñan = request.json['passwordnew']
+#     contraseña1 = request.json['passwordnew1']
 
-    # Verificar si el usuario existe
-    restablecer = validar.query.get(id)
-    if restablecer:
-        # Actualizar la contraseña
-        restablecer.contraseña = contraseña
-        restablecer.contraseña2 = contraseña1
+#     print(contraseñan , contraseña1)
+#     resultado = validar.query.get(correo)
+#     print(resultado)
+    
+#     resultado.contraseña = contraseñan
+#     resultado.contraseña2 = contraseña1
+    
+  
+#     db.session.commit()
 
-        # Guardar los cambios en la base de datos
-        db.session.commit()
-
-        # Enviar una respuesta exitosa
-        return jsonify({'message': 'Contraseña actualizada correctamente'})
-    else:
-        # Enviar una respuesta de usuario no encontrado
-        return jsonify({'message': 'Usuario no encontrado'})
+#     return jsonify({'message': 'Usuario no encontrado'})
 
 
     

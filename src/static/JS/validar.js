@@ -96,7 +96,6 @@ function modalclave() {
 
 
 
-  
   function verificarEmail() {
     const gmail = document.getElementById('correo').value;
     const buscars = document.getElementById('buscar');
@@ -106,6 +105,7 @@ function modalclave() {
     })
       .then(function (response) {
         if (response.data.message === 'Correo válido') {
+          correoValido = gmail;
           enviarcodigo();
           document.getElementById('campoAdicional').style.display = 'block';
           buscars.style.display = 'none';
@@ -117,19 +117,19 @@ function modalclave() {
           document.getElementById('mensaje-error').style.display = 'block';
           document.getElementById('correo').value = '';
 
-        }
+        }  
       })
       .catch(function (error) {
         console.log(error);
         // Manejar el error de conexión
         document.getElementById('correo').value = '';
       });
-  }
+      }
   
       
   
   
-  
+                                               
 
   function enviarcodigo() {
     const gmail = document.getElementById('correo');
@@ -184,49 +184,37 @@ function modalclave() {
 
   
   
-//MODAL DE LA CLAVE
-
-  // var clave = document.querySelector('.modal1');
-  // clave.addEventListener('click', function (event) {
-  //     if (event.target === clave) {
-  //         clave.style.display = 'none';
-  //     }
-  //   });
-  
-  // // Después de mostrar la notificación emergente de éxito en la función verificarEmail()
-  
-  // function modalclave1() { 
-
-  //     clave.style.display = 'block';
-  //   }
+// MODAL DE LA CLAVE
 
 
-  //   function restablecerclave() {
-  //     const password = document.getElementById("password").value;
-  //     const password1 = document.getElementById("password1").value;
+
+    function restablecerclave() {
+      const passwordnueva = document.getElementById("clavenueva").value;
+      const passwordnueva1 = document.getElementById("confrimaclave").value;
     
-  //     if (password === "" || password1 === "") {
-  //       alert("Por favor, completa todos los campos.");
-  //       return;
-  //     }
+      if (passwordnueva === "" || passwordnueva1 === "") {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
     
-  //     if (password !== password1) {
-  //       alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
-  //       return;
-  //     }
+      if (passwordnueva !== passwordnueva1) {
+        alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
+        return;
+      }
     
-  //     axios
-  //       .post('actualizarpass', {
-  //         password: password,
-  //         password1: password1
-  //       })
-  //       .then(function (response) {
-  //         // Manejar la respuesta del servidor en caso de éxito
-  //         alert("Contraseña actualizada exitosamente.");
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //         alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
-  //       });
-  //   }
+      axios
+        .post('actualizarpass', {
+          correo: correoValido,
+          passwordnew: passwordnueva,
+          passwordnew1: passwordnueva1
+        })
+        .then(function (response) {
+          // Manejar la respuesta del servidor en caso de éxito
+          alert("Contraseña actualizada exitosamente.");
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
+        });
+    }
     
