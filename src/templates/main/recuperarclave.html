@@ -8,12 +8,23 @@
 <body>
   <div class="container">
     <div class="logo">
+      <div id="logolibros" style="display: block;">
         <img src="{{url_for('static', filename='assets/img/libros.png')}}">
+      </div>
+        <div id="logocontraseña" style="display: none;">
+        <img  src="{{url_for('static', filename='assets/img/password.png')}}">
+        </div>
 
     </div>
     <div class="form">
+      <div id="MensajeClave" style="display: none;">
+      <h2>Ingresa tu nueva clave</h2>
+      <p>Por favor, ingresa tu nueva clave minimo 10 caractère</p>
+      </div>
+      <div id="Mensajeprimero" style="display: block;">
       <h2>Olvidaste tu contraseña</h2>
       <p>Por favor, ingresa tu dirección de correo electrónico para restablecer tu contraseña.</p>
+     </div>
       <form>
         <input type="email" id="correo"  placeholder="Correo electrónico" required>
         <button type="button" type="submit" id="buscar" onclick="verificarEmail()" >Buscar Correo</button>
@@ -22,6 +33,16 @@
         
           <input type="button" id="confirma" onclick="confirmacodigo()" type="submit" value="verificar codigo">
       </div>
+      <div id="Nuevaclave" style="display: none;">
+        <input type="text" id="clave"  placeholder="Ingresa tu nueva clave" required>
+      
+        <input type="text" id="confrimaclave"   placeholder="Confirma clave" required>
+
+        <input type="button"  onclick="confirmacodigo()" type="submit" value="Guardar contraseña">
+
+
+
+    </div>
       </form>
       <p id="mensaje-codigo" style="color: red; display: none;">Codigo ingresa incorresto</p>
       
@@ -32,7 +53,7 @@
 
 
 
-  <div class="container">
+  <!-- <div class="container">
     <div class="logo">
         <img src="{{url_for('static', filename='assets/img/password.png')}}">
 
@@ -49,7 +70,7 @@
       </div>
       
     </div>
-  </div>
+  </div> -->
 
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

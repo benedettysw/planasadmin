@@ -116,6 +116,7 @@ function modalclave() {
           // Mostrar el mensaje de error
           document.getElementById('mensaje-error').style.display = 'block';
           document.getElementById('correo').value = '';
+
         }
       })
       .catch(function (error) {
@@ -146,6 +147,8 @@ function modalclave() {
 
 
 
+
+
   function confirmacodigo() {
     const verificarcodigos = document.getElementById('verificarcodido').value;
   
@@ -154,16 +157,23 @@ function modalclave() {
     })
       .then(function (response) {
         if (response.data.message === 'Código verificado correctamente') {
-          setTimeout(function () {
-            modalclave1();
-            const modalActual = document.getElementById('recuperar');
           document.getElementById('mensaje-codigo').style.display = 'none';
+          document.getElementById("logocontraseña").style.display = 'block';
+          document.getElementById("MensajeClave").style.display = 'block';
+          document.getElementById("logolibros").style.display = 'none';
+          document.getElementById("Mensajeprimero").style.display = 'none';
+          document.getElementById("Nuevaclave").style.display = 'block';
+          document.getElementById("campoAdicional").style.display = 'none';
+          document.getElementById("correo").style.display = 'none';
 
-            modalActual.style.display = 'none';
-          });
         } else {
           document.getElementById('mensaje-codigo').style.display = 'block';
           document.getElementById('verificarcodido').value = '';
+          document.getElementById("logocontraseña").style.display = 'none';
+          document.getElementById("campoAdicional").style.display = 'block';
+          document.getElementById("correo").style.display = 'block';
+          document.getElementById("buscar").style.display = 'none';
+
         }
       })
       .catch(function (error) {
@@ -176,47 +186,47 @@ function modalclave() {
   
 //MODAL DE LA CLAVE
 
-  var clave = document.querySelector('.modal1');
-  clave.addEventListener('click', function (event) {
-      if (event.target === clave) {
-          clave.style.display = 'none';
-      }
-    });
+  // var clave = document.querySelector('.modal1');
+  // clave.addEventListener('click', function (event) {
+  //     if (event.target === clave) {
+  //         clave.style.display = 'none';
+  //     }
+  //   });
   
-  // Después de mostrar la notificación emergente de éxito en la función verificarEmail()
+  // // Después de mostrar la notificación emergente de éxito en la función verificarEmail()
   
-  function modalclave1() { 
+  // function modalclave1() { 
 
-      clave.style.display = 'block';
-    }
+  //     clave.style.display = 'block';
+  //   }
 
 
-    function restablecerclave() {
-      const password = document.getElementById("password").value;
-      const password1 = document.getElementById("password1").value;
+  //   function restablecerclave() {
+  //     const password = document.getElementById("password").value;
+  //     const password1 = document.getElementById("password1").value;
     
-      if (password === "" || password1 === "") {
-        alert("Por favor, completa todos los campos.");
-        return;
-      }
+  //     if (password === "" || password1 === "") {
+  //       alert("Por favor, completa todos los campos.");
+  //       return;
+  //     }
     
-      if (password !== password1) {
-        alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
-        return;
-      }
+  //     if (password !== password1) {
+  //       alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
+  //       return;
+  //     }
     
-      axios
-        .post('actualizarpass', {
-          password: password,
-          password1: password1
-        })
-        .then(function (response) {
-          // Manejar la respuesta del servidor en caso de éxito
-          alert("Contraseña actualizada exitosamente.");
-        })
-        .catch(function (error) {
-          console.log(error);
-          alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
-        });
-    }
+  //     axios
+  //       .post('actualizarpass', {
+  //         password: password,
+  //         password1: password1
+  //       })
+  //       .then(function (response) {
+  //         // Manejar la respuesta del servidor en caso de éxito
+  //         alert("Contraseña actualizada exitosamente.");
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //         alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
+  //       });
+  //   }
     
