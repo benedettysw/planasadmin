@@ -66,6 +66,7 @@ def castigo():
 def eliminarregistross():
     id_a = request.json['ids']
     Id_Aprendiz = registross.query.get(id_a)
+    print(Id_Aprendiz)
     if Id_Aprendiz:
         db.session.delete(Id_Aprendiz)
         db.session.commit()

@@ -288,7 +288,7 @@ function searchTable() {
 
 function eliminar(id) {
   Swal.fire({
-    title: '¿Desea eliminar definitivamente ha este aprendiz?',
+    title: '¿Desea eliminar definitivamente a este aprendiz?',
     icon: 'info',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -296,36 +296,45 @@ function eliminar(id) {
     confirmButtonText: 'Aceptar'
   }).then((result) => {
     if (result.isConfirmed) {
-  axios.post('delete', {
-    ids: id
-  })
-    .then(function (response) {
-      console.log(response);
-      ajustarIds();
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'Aprendiz Eliminado Exitosamente!',
-        showConfirmButton: false,
-        timer: 3000,
+      axios.post('delete', {
+        ids: id
       })
-      mostrar();
-    })
-    .catch(function (error) {
-      console.log(error);
+        .then(function (response) {
+          if (response.data.success) {
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Aprendiz Eliminado Exitosamente!',
+              showConfirmButton: false,
+              timer: 3000
+            }).then(() => {
+              mostrar();
+            });
+          } else {
+            Swal.fire({
+              position: 'top-center',
+              icon: 'error',
+              title: '¡Este Aprendiz Debe Planas, No Puede Ser Eliminado!',
+              showConfirmButton: false,
+              timer: 3000
+            });
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+          Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: '¡Ocurrió un error al eliminar al aprendiz!',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        });
+    } else {
       Swal.fire({
-        position: 'top-center',
-        icon: 'error',
-        title: '¡Este Aprendiz Debe Planas, No Puede Ser Eliminado!',
-        showConfirmButton: false,
-        timer: 3000,
-      })
-    });
-  } else {
-    Swal.fire({
-      title: '¡Proceso cancelado!',
-      icon: 'error'
-    })
-  }
-})
+        title: '¡Proceso cancelado!',
+        icon: 'error'
+      });
+    }
+  });
 }
