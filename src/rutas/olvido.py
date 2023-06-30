@@ -121,23 +121,23 @@ def verificarcode():
 
     
 
-# @routes_olvidado.route('/actualizarpass', methods=['POST'])
-# def actualiza():
-#     correo = request.form.get('correo')  # Asegúrate de enviar el correo desde el cliente
-#     contraseñan = request.json['passwordnew']
-#     contraseña1 = request.json['passwordnew1']
+@routes_olvidado.route('/actualizarpass', methods=['POST'])
+def actualiza():
+    correo = request.form.get('correo')  # Asegúrate de enviar el correo desde el cliente
+    contraseña = request.json['passwordnew']
+    contraseña2 = request.json['passwordnew1']
+    print(correo)
 
-#     print(contraseñan , contraseña1)
-#     resultado = validar.query.get(correo)
-#     print(resultado)
+    print(contraseña , contraseña2)
+    resultado = validar.query.get(correo)
     
-#     resultado.contraseña = contraseñan
-#     resultado.contraseña2 = contraseña1
+    resultado.contraseña = contraseña
+    resultado.contraseña2 = contraseña2
     
   
-#     db.session.commit()
+    db.session.commit()
 
-#     return jsonify({'message': 'Usuario no encontrado'})
+    return jsonify({'message': 'Usuario no encontrado'})
 
 
     

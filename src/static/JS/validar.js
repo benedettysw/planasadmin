@@ -1,6 +1,7 @@
 function Login() {
   const correo = document.getElementById('documento');
   const pass = document.getElementById('Input');
+  console.log(documento) 
 
   // Validar campos vacíos
   if (correo.value.trim() === '' || pass.value.trim() === '') {
@@ -16,7 +17,7 @@ function Login() {
 
   axios.post('login', {
       Ndocumento: correo.value,
-      contraseña: pass.value
+      contraseña: pass.value 
   })
       .then(function (response) {
           if (response.data.status === 'Correcto') {
@@ -46,16 +47,16 @@ function Login() {
 
 
 // Este es el ojo que sirve para visualizar la contraseña
-var input = document.getElementById('Input');
-var img = document.getElementById('Clave');
+// var input = document.getElementById('Input');
+// var img = document.getElementById('Clave');
 
-img.addEventListener("click", function () {
-    if (input.type == "password") {
-        input.type = "text"
-    } else {
-        input.type = "password"
-    }
-})
+// img.addEventListener("click", function () {
+//     if (input.type == "password") {
+//         input.type = "text"
+//     } else {
+//         input.type = "password"
+//     }
+// })
 
 
 
@@ -81,12 +82,12 @@ function logueo() {
 
 // //LO NUEVO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
-var recuperar = document.querySelector('.modal');
-recuperar.addEventListener('click', function (event) {
-    if (event.target === recuperar) {
-        recuperar.style.display = 'none';
-    }
-  });
+// var recuperar = document.querySelector('.modal');
+// recuperar.addEventListener('click', function (event) {
+//     if (event.target === recuperar) {
+//         recuperar.style.display = 'none';
+//     }
+//   });
 
   
 function modalclave() { 
@@ -188,25 +189,49 @@ function modalclave() {
 
 
 
+    // function restablecerclave() {
+    //   const passwordnueva = document.getElementById("clavenueva").value;
+    //   const passwordnueva1 = document.getElementById("confrimaclave").value;
+    
+    //   if (passwordnueva === "" || passwordnueva1 === "") {
+    //     alert("Por favor, completa todos los campos.");
+    //     return;
+    //   }
+    
+    //   if (passwordnueva !== passwordnueva1) {
+    //     alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
+    //     return;
+    //   }
+    
+    //   axios
+    //     .post('actualizarpass', {
+    //       correo: correoValido,
+    //       passwordnew: passwordnueva,
+    //       passwordnew1: passwordnueva1
+    //     })
+    //     .then(function (response) {
+    //       // Manejar la respuesta del servidor en caso de éxito
+    //       alert("Contraseña actualizada exitosamente.");
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //       alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
+    //     });
+    // }
+    
+
     function restablecerclave() {
-      const passwordnueva = document.getElementById("clavenueva").value;
-      const passwordnueva1 = document.getElementById("confrimaclave").value;
+      const passwordnueva = document.getElementById("clavenueva");
+      const passwordnueva1 = document.getElementById("confrimaclave");
+      // console.log(passwordnueva)
+      // console.log(passwordnueva1)
     
-      if (passwordnueva === "" || passwordnueva1 === "") {
-        alert("Por favor, completa todos los campos.");
-        return;
-      }
-    
-      if (passwordnueva !== passwordnueva1) {
-        alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
-        return;
-      }
     
       axios
         .post('actualizarpass', {
-          correo: correoValido,
-          passwordnew: passwordnueva,
-          passwordnew1: passwordnueva1
+          correo: correoValido.value,
+          passwordnew: passwordnueva.value,
+          passwordnew1: passwordnueva1.value
         })
         .then(function (response) {
           // Manejar la respuesta del servidor en caso de éxito
