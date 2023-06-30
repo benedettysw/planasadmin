@@ -26,10 +26,11 @@ def correo():
     print(verificacions)
 
     if verificacions:
+        correo_id = verificacions.id 
         session['gmails'] = verificacions.correo
-        return jsonify({'message': 'Correo válido', 'id': verificacions.id})
+        return jsonify ({'message': 'Correo válido', 'id': correo_id})  # Utiliza correo_id como ID del correo
     else:
-        return jsonify({'message': 'Correo no válido'})
+        return jsonify ({'message': 'Correo no válido'})
 
 
 
@@ -119,39 +120,32 @@ def verificarcode():
        return ({'message ':'El código ingresado es incorrecto. Inténtalo de nuevo'})
 
 
-    
+
 
 @routes_olvidado.route('/actualizarpass', methods=['POST'])
 def actualiza():
-    correo = request.form.get('correo')  # Asegúrate de enviar el correo desde el cliente
     contraseña = request.json['passwordnew']
     contraseña2 = request.json['passwordnew1']
-    print(correo)
+    correo_id = request.json.get('id')  # Obtener el ID del correo enviado en la solicitud
 
-    print(contraseña , contraseña2)
-    resultado = validar.query.get(correo)
-    
-    resultado.contraseña = contraseña
-    resultado.contraseña2 = contraseña2
-    
-  
-    db.session.commit()
+    resultado = validar.query.get(correo_id)  # Obtener el registro de validar por el ID
+    print(resultado)
+    if resultado is not None:
+        resultado.contraseña = contraseña
+        resultado.contraseña2 = contraseña2
+        db.session.commit()
+        return jsonify({'message': 'Clave actualizada correctamente'})
+    else:
+        return jsonify({'error': 'No se encontró ningún usuario con el correo proporcionado'})
 
-    return jsonify({'message': 'Usuario no encontrado'})
+
+
+
+
 
 
     
     
     
-# @routes_olvidado.route('/obtener_datos', methods=['POST'])
-# def obtener_datos():
-#     fullemail = request.json['fullemail']
-#     users = validar.query.filter_by(correo=fullemail).first()
-    
-#     if users:
-#         datos = dump(validar)
-#         return jsonify(datos)
-    
-#     return jsonify({'mensaje': 'Correo electrónico no encontrado'}), 404
 
 

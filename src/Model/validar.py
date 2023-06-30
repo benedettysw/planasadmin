@@ -1,9 +1,11 @@
 from bd import db, app, ma  
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
 class validar(db.Model):
     __tablename__ = "validar"
     
-    id = db.Column(db.Integer, primary_key=True )
+    id = db.Column(db.Integer, primary_key=True , nullable=False )
     Nombre  = db.Column(db.String(111))
     correo  = db.Column(db.String(111))
     contraseña = db.Column(db.String(111))

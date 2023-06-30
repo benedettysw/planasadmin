@@ -80,22 +80,9 @@ function logueo() {
 
 
 
-// //LO NUEVO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-
-// var recuperar = document.querySelector('.modal');
-// recuperar.addEventListener('click', function (event) {
-//     if (event.target === recuperar) {
-//         recuperar.style.display = 'none';
-//     }
-//   });
-
-  
-function modalclave() { 
-    recuperar.style.display = 'block';
-  }
 
 
-
+  let correoId; 
 
   function verificarEmail() {
     const gmail = document.getElementById('correo').value;
@@ -106,28 +93,28 @@ function modalclave() {
     })
       .then(function (response) {
         if (response.data.message === 'Correo válido') {
+          correoId = response.data.id; // Obtener el ID del correo desde la respuesta
           correoValido = gmail;
           enviarcodigo();
           document.getElementById('campoAdicional').style.display = 'block';
           buscars.style.display = 'none';
           document.getElementById('mensaje-error').style.display = 'none';
-
-
+  
+          // Utilizar el correoId como sea necesario
+          console.log('ID del correo registrado:', correoId);
+          // Llamar a la función confirmacodigo() y pasar el correoId como argumento
         } else {
           // Mostrar el mensaje de error
           document.getElementById('mensaje-error').style.display = 'block';
           document.getElementById('correo').value = '';
-
-        }  
+        }
       })
       .catch(function (error) {
         console.log(error);
         // Manejar el error de conexión
         document.getElementById('correo').value = '';
       });
-      }
-  
-      
+  }
   
   
                                                
@@ -180,56 +167,21 @@ function modalclave() {
       .catch(function (error) {
         console.log(error);
       });
+
+
+
   }
+
+
   
-
+  function restablecerclave() {
+    const passwordnueva = document.getElementById("clavenueva");
+    const passwordnueva1 = document.getElementById("confrimaclave");
   
-  
-// MODAL DE LA CLAVE
-
-
-
-    // function restablecerclave() {
-    //   const passwordnueva = document.getElementById("clavenueva").value;
-    //   const passwordnueva1 = document.getElementById("confrimaclave").value;
-    
-    //   if (passwordnueva === "" || passwordnueva1 === "") {
-    //     alert("Por favor, completa todos los campos.");
-    //     return;
-    //   }
-    
-    //   if (passwordnueva !== passwordnueva1) {
-    //     alert("Las contraseñas no coinciden. Por favor, verifica nuevamente.");
-    //     return;
-    //   }
-    
-    //   axios
-    //     .post('actualizarpass', {
-    //       correo: correoValido,
-    //       passwordnew: passwordnueva,
-    //       passwordnew1: passwordnueva1
-    //     })
-    //     .then(function (response) {
-    //       // Manejar la respuesta del servidor en caso de éxito
-    //       alert("Contraseña actualizada exitosamente.");
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //       alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
-    //     });
-    // }
-    
-
-    function restablecerclave() {
-      const passwordnueva = document.getElementById("clavenueva");
-      const passwordnueva1 = document.getElementById("confrimaclave");
-      // console.log(passwordnueva)
-      // console.log(passwordnueva1)
-    
-    
+    if (typeof correoId !== 'undefined') {
       axios
         .post('actualizarpass', {
-          correo: correoValido.value,
+          id: correoId,
           passwordnew: passwordnueva.value,
           passwordnew1: passwordnueva1.value
         })
@@ -241,5 +193,8 @@ function modalclave() {
           console.log(error);
           alert("Error al actualizar la contraseña. Por favor, intenta nuevamente.");
         });
+    } else {
+      alert("No se ha proporcionado un ID de correo válido");
     }
-    
+  }
+  
