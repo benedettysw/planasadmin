@@ -46,17 +46,17 @@ function Login() {
 
 
 
-// Este es el ojo que sirve para visualizar la contraseña
-var input = document.getElementById('Input');
-var img = document.getElementById('Clave');
+// // Este es el ojo que sirve para visualizar la contraseña
+// var input = document.getElementById('Input');
+// var img = document.getElementById('Clave');
 
-img.addEventListener("click", function () {
-    if (input.type == "password") {
-        input.type = "text"
-    } else {
-        input.type = "password"
-    }
-})
+// img.addEventListener("click", function () {
+//     if (input.type == "password") {
+//         input.type = "text"
+//     } else {
+//         input.type = "password"
+//     }
+// })
 
 
 
@@ -188,6 +188,10 @@ function logueo() {
         .then(function (response) {
           // Manejar la respuesta del servidor en caso de éxito
           alert("Contraseña actualizada exitosamente.");
+          setTimeout(function() {
+            // Redireccionar a la página de menú después de 2 segundos
+            window.location.href = '/fronted/login';
+        }, 2000);
         })
         .catch(function (error) {
           console.log(error);
