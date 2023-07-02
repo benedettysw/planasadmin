@@ -47,16 +47,16 @@ function Login() {
 
 
 // Este es el ojo que sirve para visualizar la contraseña
-// var input = document.getElementById('Input');
-// var img = document.getElementById('Clave');
+var input = document.getElementById('Input');
+var img = document.getElementById('Clave');
 
-// img.addEventListener("click", function () {
-//     if (input.type == "password") {
-//         input.type = "text"
-//     } else {
-//         input.type = "password"
-//     }
-// })
+img.addEventListener("click", function () {
+    if (input.type == "password") {
+        input.type = "text"
+    } else {
+        input.type = "password"
+    }
+})
 
 
 

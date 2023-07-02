@@ -47,7 +47,7 @@ function guardar() {
         Swal.fire({
           position: 'top-center',
           icon: 'success',
-          title: '¡Paciente Registrado Exitosamente!',
+          title: 'Aprendiz Registrado Exitosamente!',
           showConfirmButton: false,
           timer: 2000,
         });
