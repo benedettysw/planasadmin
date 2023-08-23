@@ -1,6 +1,5 @@
 from bd import db, app, ma  
-from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
+from werkzeug.security import generate_password_hash
 
 class validar(db.Model):
     __tablename__ = "validar"
@@ -15,8 +14,8 @@ class validar(db.Model):
     def __init__(self,Nombre, correo, contraseña,contraseña2):
         self.Nombre = Nombre
         self.correo = correo
-        self.contraseña = contraseña  
-        self.contraseña2 = contraseña2 
+        self.contraseña = generate_password_hash(contraseña  )
+        self.contraseña2 = generate_password_hash(contraseña2) 
 
 
 with app.app_context():

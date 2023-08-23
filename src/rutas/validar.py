@@ -2,6 +2,8 @@ from bd import db
 from flask import Blueprint, request, session , redirect ,  render_template , jsonify
 from Model.validar import validar
 from Model.registro import registross
+from werkzeug.security import check_password_hash
+
 
 
 routes_validar= Blueprint("routes_validar", __name__)
@@ -19,7 +21,7 @@ def login():
         admin_id = verificacion.id  # Obtener el ID del administrador alalalaa
         admin_nombre = verificacion.Nombre  # Obtener el nombre del administrador
 
-        if (verificacion.contraseña == contraseña):
+        if check_password_hash(verificacion.contraseña , contraseña):
             session["admin_id"] = admin_id  # Guardar el admin_id en la sesión
             session["admin_nombre"] = admin_nombre  # Guardar el nombre del administrador en la sesión
             print(admin_id)
