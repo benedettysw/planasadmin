@@ -96,3 +96,32 @@ function cuenta() {
     console.error(error)
   });
 }
+
+
+
+var input = document.getElementById('clave');
+
+var img = document.getElementById('Clave');
+
+img.addEventListener("click", function () {
+    if (input.type == "password") {
+        input.type = "text"
+    } else {
+        input.type = "password"
+    }
+})
+
+
+
+
+var input1 = document.getElementById('clave2');
+
+var img2 = document.getElementById('Clave22');
+
+img2.addEventListener("click", function () {
+    if (input1.type == "password") {
+        input1.type = "text"
+    } else {
+        input1.type = "password"
+    }
+})

@@ -4,18 +4,25 @@ function guardar() {
   const cursos = document.getElementById('curso').value;
   const Nfichas = document.getElementById('Nficha').value;
   const documento = document.getElementById('documento').value;
-  const imagen = document.getElementById('imagen').files[0];
 
-  const formData = new FormData();
-  formData.append('nombre', nombres);
-  formData.append('apellido', Apellidos);
-  formData.append('curso', cursos);
-  formData.append('Nficha', Nfichas);
-  formData.append('documento', documento);
-  formData.append('imagen', imagen);
+
+
+
+
+
 
   axios
-    .post('/guardar', formData)
+    .post('guardar', {
+      nombre: nombres,
+      Apellidos: Apellidos,
+      cursos: cursos,
+      Nfichas: Nfichas,
+      documento: documento,
+    },{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
     .then((res) => {
       console.log(res.data);
       if (res.data === 'Aprendiz existente en la bd') {

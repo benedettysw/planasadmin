@@ -1,62 +1,76 @@
 function Login() {
   const correo = document.getElementById('documento');
   const pass = document.getElementById('Input');
-  console.log(documento) 
 
-  // Validar campos vacíos
-  if (correo.value.trim() === '' || pass.value.trim() === '') {
-      Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: '¡Ingrese correo y contraseña!',
-          showConfirmButton: false,
-          timer: 2000
-      });
-      return; // Detener la ejecución de la función
-  }
 
-  axios.post('login', {
-      Ndocumento: correo.value,
-      contraseña: pass.value 
+
+
+
+  axios.post('login' ,{
+    Ndocumento: correo.value,
+    contraseña: pass.value 
   })
-      .then(function (response) {
-          if (response.data.status === 'Correcto') {
-              logueo();
-              console.log(response);
-              setTimeout(function() {
-                  // Redireccionar a la página de menú después de 2 segundos
-                  window.location.href = '/fronted/menu';
-              }, 2000);
-          } else {
-              Swal.fire({
-                  position: 'top-center',
-                  icon: 'error',
-                  title: '¡Datos inválidos!',
-                  showConfirmButton: false,
-                  timer: 2000
-              });
-              document.getElementById('documento').value = "";
-              document.getElementById('Input').value = "";
-          }
+
+
+
+
+  .then(res => {
+    console.log(res);
+    if (res.data.status === 'Correcto'){
+      window.location = '/fronted/menu';
+
+
+
+    } else {
+      Swal.fire({
+        position: 'top-center',
+        icon: 'error',
+        title: 'Verifique sus datos',
+        showConfirmButton: false,
+        timer: 1000,
       })
-      .catch(function (error) {
-          console.log(error);
-      });
+    }
+
+
+
+  })
+  .catch(error => {
+    console.log(error);
+  });
 }
 
 
 
-// // Este es el ojo que sirve para visualizar la contraseña
-// var input = document.getElementById('Input');
-// var img = document.getElementById('Clave');
 
-// img.addEventListener("click", function () {
-//     if (input.type == "password") {
-//         input.type = "text"
-//     } else {
-//         input.type = "password"
-//     }
-// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Este es el ojo que sirve para visualizar la contraseña
+var input = document.getElementById('Input');
+var img = document.getElementById('Clave');
+
+img.addEventListener("click", function () {
+    if (input.type == "password") {
+        input.type = "text"
+    } else {
+        input.type = "password"
+    }
+})
 
 
 
