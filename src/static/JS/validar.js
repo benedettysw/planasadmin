@@ -15,7 +15,7 @@ function Login() {
 
 
   .then(res => {
-    console.log(res);
+
     if (res.data.status === 'Correcto'){
       window.location = '/fronted/menu';
 
@@ -74,22 +74,6 @@ img.addEventListener("click", function () {
 
 
 
-function logueo() {
-    axios.get('obtener_datos_sesion')
-        .then(function (response) {
-            const datos = response.data;
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'Bienvenido ' + datos.Nombre,
-                showConfirmButton: false,
-                timer: 2000,
-            })
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
 
 
 

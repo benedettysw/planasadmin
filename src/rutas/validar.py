@@ -1,8 +1,7 @@
 from bd import db
-from flask import Blueprint, request, session , redirect ,  render_template , jsonify
+from flask import Blueprint, request, session , jsonify
 from Model.validar import validar
 from werkzeug.security import check_password_hash
-import logging
 
 
 
@@ -14,31 +13,33 @@ routes_validar= Blueprint("routes_validar", __name__)
 
 
 @routes_validar.route('/login', methods=['POST'])
+
 def login():
+    
     usuario = request.json["Ndocumento"]
-    contraseña = request.json["contraseña"]
+    clave = request.json["contraseña"]
     
-    print(usuario, contraseña)
 
-    verificacion = db.session.query(validar).filter(validar.correo == usuario, validar.contraseña == contraseña).first()
+    verificacion = db.session.query(validar).filter(validar.correo == usuario , validar.contraseña == clave).first()
     
-    print(verificacion)
-
     if verificacion:
-        # Usuario encontrado, realizar acciones de inicio de sesión
-        return {"status": "Correcto"}
+        id = verificacion.id
+        nombre = verificacion.Nombre
+        
+        print(id)
+        
+        
+        session ["id_usuario"] = id
+        session ["id_nombre"] = nombre
+        
+        #el que esta dentro de los brakest
+        
+        
+        
+        return {"status": "Correcto"  , "id_usuario" : nombre}
     else:
         return {"status": "Error", "message": "Usuario o contraseña incorrectos"}
-    
-    
-    
-    
-    
 
-#ALERTA QUE MUESTRA EL INSTRUTOR QUE ENTRO
-@routes_validar.route('/obtener_datos_sesion')
-def obtener_datos_sesion():
-    admin_id = session.get('admin_id')
-    Nombre = session.get('admin_nombre')
-    return jsonify({'adminId': admin_id, 'Nombre': Nombre})
+
+
 

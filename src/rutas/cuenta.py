@@ -23,11 +23,12 @@ def cuenta():
     new_section = validar(nombre, correos, clave, clave2)
     db.session.add(new_section)
     db.session.commit()
+    
     if new_section:
         admin_id1 = new_section.id
         nombre_id2 = new_section.Nombre
-        session["admin_id"] = admin_id1
-        session["admin_nombre"] = nombre_id2
+        session["id_usuario"] = admin_id1
+        session["id_nombre"] = nombre_id2
 
     return "ok"
     

@@ -17,7 +17,8 @@ def saveSection():
     
     print(nombre)
 
-    id_admin = session.get('admin_id') 
+    id_admin = session.get('id_usuario') 
+    print(id_admin)
     if id_admin is None:
         return "error # Obtener el ID del administrador actualmente logueado"
     

@@ -16,7 +16,7 @@ routes_mostrar = Blueprint("routes_listcategory", __name__)
 @routes_mostrar.route('/mostrars', methods=['GET'])
 def viewlistcategor():
     datos= {}
-    id_admin=session.get('admin_id')
+    id_admin=session.get('id_usuario')
     resultado = db.session.query(registross).select_from(registross).filter(registross.id_admin == id_admin).all()
     print(resultado)
     # resultado = "select * from planass"

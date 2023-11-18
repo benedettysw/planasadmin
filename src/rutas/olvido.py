@@ -6,8 +6,6 @@ from random import randint
 import smtplib
 import email
 from datetime import datetime, timezone
-import secrets
-import hashlib
 from flask import sessions
 import random
 from datetime import datetime , timedelta
